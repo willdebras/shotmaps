@@ -76,38 +76,17 @@ for (i = 0; i < nesteddata.length; i++) {
             .x(d => xAccessor(d))
             .y(d => yAccessor(d))
 
-        // const line = bounds
-        //      .data(nesteddata)
-        //      .enter()
-        //      .append("path")
-        //       .attr("d", function(d){ lineGenerator(d)})
-        //       .attr("fill", "none")
-        //       .attr("stroke", "#af9358")
-        //       .attr("stroke-width", 1)
 
-        //       console.log(line)
-
-
-        // const lines = bounds
-        //     .data(nesteddata)
-        //     .enter()
-        //     .append("path")
-        //       .attr("fill", "none")
-        //       .attr("stroke", "#af9358")
-        //       .attr("stroke-width", 2)
-        //       .attr("d", function(d){
-        //         return d3.line()
-        //         .x(function(d) { return xScale(d.year); })
-        //         .y(function(d) { return yScale(d.mean); })
-        //           (d.values)
-        //       })
-
-        //console.log(xScale(dateParser(2050)))
+        bounds.append('rect')
+          .attr("width", "50")
+          .attr("height", "47")
+          .attr("fill", "#fffcf2")
+          .style("transform", `translate(-25px, 0px)`)
 
         bounds
         .selectAll(".line")
         .append("g")
-        .attr("class", "line")
+          .attr("class", "line")
         .data(nesteddata)
         .enter()
         .append("path")
@@ -117,9 +96,9 @@ for (i = 0; i < nesteddata.length; i++) {
             .y(d => d.y)
             (d.values)
             })
-          .attr("fill", "none")
+          .attr("fill", "transparent")
           .attr("stroke", "black")
-          .attr("stroke-width", 0.25)
+          .attr("stroke-width", 0.1)
 
 
         // 6. Draw peripherals
