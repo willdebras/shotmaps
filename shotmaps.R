@@ -82,6 +82,7 @@ court_points = dplyr::bind_rows(
   three_point_line
 )
 
+write.csv(court_points, "courtpoints.csv", row.names = FALSE)
 
 ggplot2::ggplot() +
   ggplot2::geom_path(
