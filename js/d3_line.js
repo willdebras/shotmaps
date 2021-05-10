@@ -140,12 +140,46 @@ for (i = 0; i < nesteddata.length; i++) {
         //     }px)`)
 
 
-
-
 });
 
 
+d3.csv("https://raw.githubusercontent.com/willdebras/shotmaps/master/knicks_05_09.csv", function(data) {
 
+console.log(data)
+
+
+  // 4. Create scales
+
+        // const yScale = d3.scaleLinear()
+        //     .domain(d3.extent(data, yAccessor))
+        //     .range([dimensions.height, 0])
+
+
+        //const xScale = d3.scaleTime()
+        // const xScale = d3.scaleLinear()
+        //     .domain(d3.extent(data, xAccessor))
+        //     .range([0, dimensions.width])
+
+        // 5. Draw data
+
+
+        bounds
+        .selectAll(".dot")
+        .append("g")
+        .attr("class", "dot")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) { return (d.loc_x);})
+        .attr("cy", function (d) { return (d.loc_y);})
+          .attr("r", 0.2)
+          .attr("fill", "none")
+          .attr("stroke", "orange")
+          .attr("stroke-width", 0.1)
+
+
+
+});
 
 
 
