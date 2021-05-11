@@ -156,19 +156,21 @@ function onMouseEnter(d) {
   tooltip.select("#league-average")
       .html(d.fg_pct)
 
-  const x = xAccessor(d)
 
-  const y = yAccessor(d)
+  const x = xScale(xAccessor(d))
 
-  // tooltip.style("transform", `translate(`
-  //   + `calc( -50% + ${x}px),`
-  //   + `calc(-100% + ${y}px)`
-  //   + `)`)
 
-    tooltip.style("transform", `translate(`
-    + `calc( -50% + ${d3.event.pageX}px),`
-    + `calc(-100% + ${d3.event.pageY}px)`
+  const y = yScale(yAccessor(d))
+
+  tooltip.style("transform", `translate(`
+    + `calc( -50% + ${x}px),`
+    + `calc(-100% + ${y}px - 4px)`
     + `)`)
+
+    // tooltip.style("transform", `translate(`
+    // + `calc( -50% + ${d3.event.pageX}px),`
+    // + `calc(-100% + ${d3.event.pageY}px)`
+    // + `)`)
 
   tooltip
   .style("opacity", 1)
@@ -186,15 +188,25 @@ function onMouseLeave() {
 
   // 4. Create scales
 
-        // const yScale = d3.scaleLinear()
-        //     .domain(d3.extent(data, yAccessor))
-        //     .range([dimensions.height, 0])
+  var container = d3.select("svg").node()
+
+  const containerWidth = container.getBoundingClientRect().width;
+  const containerHeight = container.getBoundingClientRect().height;
+
+  console.log(containerWidth)
+  console.log(containerHeight)
+  
+
+        const yScale = d3.scaleLinear()
+            .domain([-5, 50])
+            .range([0, containerHeight])
+
+        const xScale = d3.scaleLinear()
+            .domain([-30, 30])
+            .range([0, containerWidth])
 
 
-        //const xScale = d3.scaleTime()
-        // const xScale = d3.scaleLinear()
-        //     .domain(d3.extent(data, xAccessor))
-        //     .range([0, dimensions.width])
+
 
         // 5. Draw data
 
