@@ -45,7 +45,7 @@ body {
     text-align: center;
     line-height: 1.2rem;
     font-size: 0.9rem;
-    border: 1px solid var(--nba-blue);
+    border: 2px solid var(--nba-blue);
     z-index: 10;
     transition: all 0.1s ease-out;
     pointer-events: none;
@@ -60,7 +60,7 @@ body {
     width: 12px;
     height: 12px;
     background: white;
-    border: 1px solid var(--nba-blue);
+    border: 2px solid var(--nba-blue);
     border-top-color: transparent;
     border-left-color: transparent;
     transform: translate(-50%, 50%) rotate(45deg);
