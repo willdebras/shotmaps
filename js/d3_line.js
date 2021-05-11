@@ -142,9 +142,11 @@ function onMouseEnter(d) {
   //     .style("fill", "maroon")
   //     .style("pointer-events", "none")
 
+  d3.select(this).style("cursor", "pointer")
+
   var missedmade = (d.event_type === "Made Shot") ? "made" : "missed"
 
-  var bodyText = "<span style = 'color:#17408b; font-weight:700;'>" + d.player_name + "</span> " + "<i>" + missedmade + "</i> this " + d.shot_distance + "ft. " + d.action_type.toLowerCase() + "<br>in period " + d.period + " with " +  d.minutes_remaining + " minutes, " + d.seconds_remaining + " seconds remaining."
+  var bodyText = "<span style = 'color:#17408b; font-weight:700;'>" + d.player_name + "</span> " + "<i>" + missedmade + "</i> this " + d.shot_distance + "ft. " + d.action_type.toLowerCase() + " in period " + d.period + " with " +  d.minutes_remaining + " minutes, " + d.seconds_remaining + " seconds remaining."
 
   tooltip.select("#player")
       //.text(d.player_name)
