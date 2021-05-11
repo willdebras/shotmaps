@@ -18,7 +18,29 @@
     
     <body>
     
-        <div id = "wrapper" style = "width:900px"></div>
+        <div class = "header">
+            Shots from the Knicks in the 5/9/2021 game versus the Clippers
+
+        </div>
+
+        <div id = "wrapper" style = "width:50%; margin:auto;">
+        
+            <div id="tooltip" class="tooltip">
+                <div class="tooltip-player">
+                    <span id="player"></span>
+                </div>
+                <!--
+                <div class="tooltip-type">
+                    Shot type: <span id="shottype"></span>
+                </div>
+
+                -->
+                <div class="tooltip-league-average">
+                    League average shot percentage from this position:<br> <span id="league-average"></span>
+                </div>
+            </div>
+
+        </div>
 
         <script src="https://d3js.org/d3.v4.js"></script>
         <script src="js/d3_line.js"></script>
