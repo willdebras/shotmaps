@@ -33,6 +33,11 @@ players_data = fromJSON(content(request, as = "text"))
 players = tbl_df(data.frame(players_data$resultSets$rowSet[[1]], stringsAsFactors = FALSE))
 names(players) = tolower(players_data$resultSets$headers[[1]])
 
+all_team_ids <- select(players, team_id, team_name, team_abbreviation, team_code) %>% distinct()
+all_team_ids <- all_team_ids[-1,]
+
+write.csv(all_team_ids, "team_ids.csv", row.names = F)
+
 players = mutate(players,
                  person_id = as.numeric(person_id),
                  rosterstatus = as.logical(as.numeric(rosterstatus)),
@@ -76,4 +81,3 @@ find_player_by_name = function(n) {
 find_player_id_by_name = function(n) {
   find_player_by_name(n)$person_id
 }
-
