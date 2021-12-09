@@ -40,4 +40,7 @@ write(jsonlite::toJSON(court_split), "courtpoints.json")
 
 allshots <- read.csv("2021_season_aug_dec.csv")
 
-write(jsonlite::toJSON(allshots), "allshots.json")
+shots_selected <- allshots %>%
+    dplyr::select(game_id, player_name, team_name, period, minutes_remaining, seconds_remaining, event_type, action_type, shot_distance, fg_pct, loc_x, loc_y )
+
+write(jsonlite::toJSON(shots_selected), "allshots.json")
