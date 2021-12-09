@@ -1,4 +1,4 @@
-View(all_teams_tib)
+library(dplyr)
 
 unique_games <- all_teams_tib %>% 
     select(game_id, team_id, team_name, htm, vtm, game_date) %>%
@@ -19,3 +19,21 @@ matchups <- full_join(left_arranged, right_arranged, by= "game_id")
 
 
 write.csv(matchups, "matchups.csv")
+
+
+matchups <- read.csv("matchups.csv")
+matchups_reverse <- matchups %>%
+    select(X, game_id, team2_id, team2_name, htm, vtm, game_date, team1_id, team1_name) %>%
+    `colnames<-`(c("X", "game_id", "team1_id", "team1_name", "htm", "vtm", "game_date", "team2_id", "team2_name"))
+
+full_matchups <- rbind(matchups, matchups_reverse)[,-1]
+
+matchups_json <- jsonlite::toJSON(full_matchups)
+write(matchups_json, "matchups.json")
+
+
+court_data <- read.csv('courtpoints.csv')
+
+court_split <- split(court_data, court_data$desc)
+
+write(jsonlite::toJSON(court_split), "courtpoints.json")
