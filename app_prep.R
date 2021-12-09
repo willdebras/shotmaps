@@ -37,3 +37,7 @@ court_data <- read.csv('courtpoints.csv')
 court_split <- split(court_data, court_data$desc)
 
 write(jsonlite::toJSON(court_split), "courtpoints.json")
+
+allshots <- read.csv("2021_season_aug_dec.csv")
+
+write(jsonlite::toJSON(allshots), "allshots.json")
