@@ -41,6 +41,20 @@ write(jsonlite::toJSON(court_split), "courtpoints.json")
 allshots <- read.csv("2021_season_aug_dec.csv")
 
 shots_selected <- allshots %>%
-    dplyr::select(game_id, player_name, team_name, period, minutes_remaining, seconds_remaining, event_type, action_type, shot_distance, fg_pct, loc_x, loc_y )
+    dplyr::select(game_id, player_name, team_name, period, minutes_remaining, seconds_remaining, event_type, action_type, shot_distance, shot_value, fg_pct, loc_x, loc_y )
 
 write(jsonlite::toJSON(shots_selected), "allshots.json")
+
+
+test <- shots_selected[(0:8600),]
+write(jsonlite::toJSON(test), "test.json")
+
+View(allshots)
+    
+madeshots <- dplyr::filter(allshots, shot_made_flag=="made")
+
+scores <- madeshots %>%
+    group_by(team_name, game_id) %>%
+    summarize(score = sum(shot_value))
+
+write(jsonlite::toJSON(scores), "scores.json")
